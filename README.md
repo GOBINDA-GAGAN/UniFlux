@@ -269,6 +269,152 @@ Let’s build **UniFlux** together —
 <details>
   <summary>📘 Click to Read More </summary>
 
+## 🔄 Contribution Workflow (UniFlux)
+
+### 📌 **Visual Workflow Diagram**
+
+> ✅ You can paste this directly into `README.md` (GitHub supports Mermaid)
+
+```mermaid
+flowchart TD
+    A[👋 Contributor Reads README.md] --> B[🔍 Browse Issues]
+    B --> C{Issue Assigned?}
+    C -- No --> D[📝 Comment to Request Assignment]
+    D --> C
+    C -- Yes --> E[🍴 Fork the Repository]
+    E --> F[🌿 Create a New Branch]
+    F --> G[💻 Make Code Changes]
+    G --> H[🧪 Test Locally]
+    H --> I[📦 Commit Changes]
+    I --> J[🚀 Push Branch to Fork]
+    J --> K[🔁 Create Pull Request]
+    K --> L{Admin Review}
+    L -- Changes Requested --> G
+    L -- Approved --> M[✅ PR Merged 🎉]
+```
+
+---
+
+## 🧭 Contribution Workflow Explained (Simple Steps)
+
+### 👋 **Step 1: Read the README**
+
+📖 Understand:
+
+* Project vision (UniFlux)
+* Folder structure
+* Coding rules
+* Contribution guidelines
+
+---
+
+### 🔍 **Step 2: Pick an Issue**
+
+* Browse open issues
+* Choose one based on your skill level:
+
+  * 🟢 Beginner
+  * 🟡 Intermediate
+  * 🔴 Advanced
+
+---
+
+### 📝 **Step 3: Get the Issue Assigned**
+
+💬 Comment on the issue:
+
+> “I would like to work on this issue.”
+
+⚠️ Do **not** start without assignment.
+
+---
+
+### 🍴 **Step 4: Fork the Repository**
+
+Create your own copy of the UniFlux repository.
+
+---
+
+### 🌿 **Step 5: Create a Branch**
+
+```bash
+git checkout -b feature/issue-name
+```
+
+---
+
+### 💻 **Step 6: Make Your Changes**
+
+* Follow existing code style
+* Do not touch unrelated files
+* Keep changes focused on the issue
+
+---
+
+### 🧪 **Step 7: Test Your Code**
+
+✔ Ensure:
+
+* No build errors
+* No broken UI
+* Feature works as expected
+
+---
+
+### 📦 **Step 8: Commit Your Changes**
+
+```bash
+git commit -m "Fix: added timetable UI validation"
+```
+
+---
+
+### 🚀 **Step 9: Push to Your Fork**
+
+```bash
+git push origin feature/issue-name
+```
+
+---
+
+### 🔁 **Step 10: Create a Pull Request**
+
+📝 Include:
+
+* Issue reference
+* What you changed
+* Screenshots (if UI-related)
+
+---
+
+### 🔍 **Step 11: Review Process**
+
+* Admin reviews PR
+* Feedback may be given
+* Make changes if requested
+
+---
+
+### ✅ **Step 12: PR Merged 🎉**
+
+Congratulations!
+Your contribution is now part of **UniFlux** 🚀🎓
+
+---
+
+## 🚨 Important Rules
+
+* ❌ No direct commits to `main`
+* ❌ No unrelated refactors
+* ❌ No core logic changes without discussion
+* ✅ Clean, focused PRs only
+
+---
+
+## 💖 Final Note
+
+Open-source is about **learning + collaboration**.
+Even small contributions matter 💙
   
 </details>
 
