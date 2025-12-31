@@ -6,11 +6,17 @@
 
 AI-Powered Smart University Management &amp; Timetable Optimization Platform
 
-
-
-
-
-
+<div align="center">
+  <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/74b9fbd2-9165-4b99-90c8-439544690525" /><br><br>
+  <p align="center">
+    <b>🎉 This project is now OFFICIALLY accepted for ECWOC 2026</b>
+    <br><br>
+    <b>🌍 Open Source Program | 🚀 Real Projects | 💡 Real Impact</b>
+    <br><br>
+    <b>🏆 Elite Coders Winter of Code (ECWOC 2026)</b>
+    <br><br>
+  </p>
+</div>
 
 
 
