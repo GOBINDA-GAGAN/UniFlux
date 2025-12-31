@@ -70,11 +70,11 @@
 
 **_⚠ Skipping this step can cause merge conflicts and your PR may be rejected._**
 
-**_🚧 Important Note: login, registration, or Google authentication system Everything is working properly._**
+<!---**_🚧 Important Note: login, registration, or Google authentication system Everything is working properly._**-->
 
 **_⚠ Do NOT remove or change any existing code unrelated to your issue! If your PR modifies or deletes any core code without a valid reason, it will not be merged._**
 
-**_🚫 Strict Rule: Do NOT bypass the login, registration, or Google authentication system. If any such activity is found, you will be removed and reported from this project._**
+**_🚫 Strict Rule: Do NOT bypass the <!---login, registration, or Google authentication--> system. If any such activity is found, you will be removed and reported from this project._**
 
 ---
 
