@@ -1,52 +1,57 @@
-# 🚀 What Is Dev-Elevate? (Mission & Vision)
+# 🚀 What Is UniFlux? (Mission & Vision)
 
-Dev-Elevate is an open-source, full-stack platform designed to boost your developer journey—whether you want to learn, collaborate, build your portfolio, or land a job. It combines a real-world project structure (modern frontend + backend) with contributor-first documentation to help you **understand, not just install**.
+UniFlux is an open-source, smart university management platform designed to simplify and optimize academic operations in modern institutions. It focuses on intelligent timetable generation, faculty workload balancing, and centralized academic management. Built with a real-world frontend and backend architecture, UniFlux follows a contributor-first approach, enabling developers to **understand the system, not just install it**, while collaboratively building a scalable and impactful solution.
 
 ---
 
 ## 📖 Table of Contents
 
-1. [Why Dev-Elevate?](#1-why-dev-elevate-pain-points-it-solves)
+1. [Why UniFlux?](#1-why-uniflux-problems-it-solves)
 2. [High-Level System Map](#2-high-level-system-map)
 3. [Folder Structure (What & Why)](#3-folder-structure-what--why)
-4. [Architectural Deep Dive (How Everything Connects)](#4-architectural-deep-dive-how-everything-connects)
-5. [Core Features Explained (With Flowcharts)](#5-core-features-explained-with-flowcharts)
+4. [Architecture Deep Dive](#4-architecture-deep-dive)
+5. [Core Features Explained](#5-core-features-explained)
 6. [Frontend: The Client App](#6-frontend-the-client-app)
 7. [Backend: The Server API](#7-backend-the-server-api)
-8. [How to Run and Actually Debug This Project](#8-how-to-run-and-actually-debug-this-project)
-9. [Common Workflows (What a Real Contributor Does)](#9-common-workflows-what-a-real-contributor-does)
-10. [Best Practices, Gotchas, & Style Guide](#10-best-practices-gotchas--style-guide)
-11. [Learning Path: “Level Up From 0 ➔ Contributor”](#11-learning-path-level-up-from-0--contributor)
+8. [How to Run & Debug UniFlux](#8-how-to-run--debug-uniflux)
+9. [Real Contributor Workflows](#9-real-contributor-workflows)
+10. [Best Practices & Style Guide](#10-best-practices--style-guide)
+11. [Learning Path: Beginner ➜ Contributor](#11-learning-path-beginner--contributor)
 12. [Contributor Quick Wins](#12-contributor-quick-wins)
-13. [How to Get Your PR Reviewed Fast](#13-how-to-get-your-pr-reviewed-fast)
-14. [FAQ, Troubleshooting & Community Help](#14-faq-troubleshooting--community-help)
-15. [Learning Resources & Further Reading](#15-learning-resources--further-reading)
+13. [How to Get Your PR Reviewed Faster](#13-how-to-get-your-pr-reviewed-faster)
+14. [FAQ, Troubleshooting & Help](#14-faq-troubleshooting--help)
+15. [Learning Resources & References](#15-learning-resources--references)
 
 ---
 
-## 1. Why Dev-Elevate? (Pain Points It Solves)
+## 1. Why UniFlux? (Problems It Solves)
 
-* **For New Devs:** Hands-on, resume-ready project. Practice real PRs, code reviews, and deployments.
-* **For Contributors:** Friendly onboarding. Clear structure, starter issues, clean documentation.
-* **For Maintainers:** Scalable contributor experience, less hand-holding, better community health.
-* **For Everyone:** Modern stack (React, TypeScript, Node, Tailwind, Express, JWT), with “learn as you build” philosophy.
+- **For Universities:** Eliminates manual timetable creation, reduces class clashes, balances faculty workload, and improves classroom and lab utilization.
+- **For Faculty & Admins:** Simplifies academic planning with role-based access, clear workflows, and intelligent scheduling support.
+- **For Contributors:** Real-world, domain-driven open-source project with clear structure, beginner-friendly issues, and strong documentation.
+- **For Everyone:** Modern web stack with a “learn while building” philosophy focused on scalable, real-life systems.
 
 ---
 
 ## 2. High-Level System Map
 
 ```
-Root/
-├── .github/           # GitHub templates (PRs, issues)
-├── .project-docs/     # Meta docs: FAQ, INSTALL, ROADMAP, etc.
-├── DevElevate/
-│   ├── Client/        # Frontend app (React/TS/Tailwind)
-│   └── Server/        # Backend API (Node/Express)
-├── [Meta files: README, LICENSE, CODE_OF_CONDUCT...]
+
+UniFlux/
+├── .github/ # GitHub templates (PRs, issues)
+├── docs/ # Project docs: FAQ, INSTALL, ROADMAP, ENV
+├── frontend/ # Frontend app (TypeScript / JavaScript / Tailwind)
+├── backend/ # Backend API & core logic
+├── README.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── ROADMAP.md
+└── LICENSE
+
 ```
 
-* **Mono-repo:** Both Client and Server together for easy collaboration
-* **Docs-first:** `.project-docs` offers extra, non-code docs
+- **Mono-repo:** Frontend and backend maintained together for smooth collaboration
+- **Docs-first:** Clear documentation to help contributors understand the system before coding
 
 ---
 
@@ -54,107 +59,138 @@ Root/
 
 **Top-level:**
 
-* `.github/` → Issue/PR templates (contributing standards)
-* `.project-docs/` → Extra docs for project meta, not always present in OSS
-* `DevElevate/Client/` → All frontend logic, assets, configs
-* `DevElevate/Server/` → All backend logic, API, configs
-* `README.md` → Project intro, quickstart
-* `CONTRIBUTING.md` → Step-by-step for new contributors
-* `LICENSE`, `CODE_OF_CONDUCT.md`, etc. → Legal & community norms
+- `.github/` → Issue and PR templates, workflow standards
+- `docs/` → Project documentation (INSTALL, FAQ, ROADMAP, ENV)
+- `frontend/` → All frontend logic, UI components, assets, and configs
+- `backend/` → Backend APIs, authentication, core business logic
+- `README.md` → Project overview and quick start guide
+- `CONTRIBUTING.md` → Step-by-step contribution guidelines
+- `LICENSE`, `CODE_OF_CONDUCT.md` → Legal terms and community rules
 
-**Pro tip:** If you’re lost, start with `README.md` and peep `.project-docs/INSTALL.md`.
+**Pro tip:** If you’re new, start with `README.md`, then check `docs/INSTALL.md` to set up the project locally.
 
 ---
 
 ## 4. Architectural Deep Dive (How Everything Connects)
 
-* **Frontend (`Client/`):** React (with Vite for speed), written in TypeScript, styled using Tailwind. Handles all UI, routing, and makes API calls to backend.
-* **Backend (`Server/`):** Node.js with Express. All REST APIs, authentication (likely JWT), and business logic.
-* **Shared contract:** Environment variables and documented endpoints.
+- **Frontend (`frontend/`):** Built with TypeScript and JavaScript, styled using Tailwind CSS. Handles UI rendering, routing, form validation, and communicates with the backend via APIs.
+- **Backend (`backend/`):** Manages authentication, role-based access, academic data, timetable logic, and result processing through secure REST APIs.
+- **Shared Contract:** Environment variables, API endpoints, and request/response formats ensure smooth frontend–backend communication.
 
 **Data flow example:**
 
-1. User logs in (Client sends POST to Server `/api/login`)
-2. Server validates, sends back JWT token
-3. Client stores JWT (in memory or localStorage)
-4. Client uses JWT for future requests (protected endpoints)
+1. User logs in from the frontend
+2. Frontend sends authentication request to backend
+3. Backend validates credentials and role permissions
+4. Backend returns an access token or session
+5. Frontend stores the token securely
+6. Subsequent requests use the token to access protected academic resources
 
-**Deployment:** Designed for cloud (e.g., Vercel/Render/Heroku for client/server split)
+**Deployment:** Designed for cloud-based hosting with separate frontend and backend deployments for scalability and reliability.
 
 ---
 
 ## 5. Core Features Explained (With Flowcharts)
 
-**User Authentication Flow:**
+### 🔐 Authentication & Role Access Flow
 
 ```mermaid
 flowchart TD
-    A[User enters login form] --> B[Frontend: POST /api/login]
-    B --> C[Server: Auth route checks DB]
-    C -->|OK| D[Server: Sends JWT]
-    C -->|Fail| E[Server: Sends error]
-    D --> F[Frontend: Store JWT, route user]
-    E --> G[Frontend: Show error to user]
-    F --> H[Subsequent API requests use JWT]
+    A[User enters login details] --> B[Frontend: Send auth request]
+    B --> C[Backend: Validate credentials & role]
+    C -->|Authorized| D[Backend: Issue access token]
+    C -->|Denied| E[Backend: Return error response]
+    D --> F[Frontend: Store token & redirect user]
+    E --> G[Frontend: Display error message]
+    F --> H[Protected API requests include token]
 ```
 
-**Other Features:**
+### 🧠 Key Platform Features
 
-* Dashboard: User-specific data pulled from backend
-* “Practice/Job” modules: Not explicit in code tree, but likely features based on project theme
-* Error handling: Server sends status codes, client parses and displays feedback
+- **Role-Based Dashboards:**
+  Admin, Department Admin, and Faculty dashboards load data dynamically from the backend.
 
-**See code:** For full flow, check `DevElevate/Client/` components and `DevElevate/Server/index.js` routes.
+- **Smart Timetable Management:**
+  Interfaces to define subjects, faculty availability, classrooms, and time slots.
+
+- **Conflict Detection & Validation:**
+  Identifies clashes in schedules and highlights them in real time.
+
+- **Academic Data Handling:**
+  Secure retrieval and display of timetable and result-related data.
+
+- **Error Handling & Feedback:**
+  Backend returns structured status codes; frontend displays meaningful messages.
+
+**See code:**
+For implementation details, explore the `frontend/` components and `backend/` API routes.
 
 ---
 
 ## 6. Frontend: The Client App
 
-* **Stack:** React + TypeScript + Vite + Tailwind CSS
-* **Configs:** `vite.config.ts`, `tailwind.config.js`, `tsconfig.json`, `.env.local`
-* **Main files:** Components, pages, hooks (see `src/`)
-* **Dev workflow:**
+- **Stack:** TypeScript, JavaScript (ES6+), Tailwind CSS
+- **Build Tool:** Vite for fast development and hot reload
+- **Configs:** `vite.config.ts`, `tailwind.config.js`, `tsconfig.json`, `.env`
+- **Main Areas:** Reusable components, role-based pages, routing, and utility helpers (inside `src/`)
 
-  * `npm install`
-  * `npm run dev`
-* **Hot reload & instant feedback**
+**Development workflow:**
 
-**Debug tip:** Start with `index.html` (entry), then follow routing in main component tree.
+- `npm install`
+- `npm run dev`
+
+- **Instant hot reload** for rapid UI iteration and debugging
+
+**Debug tip:** Begin with `main.tsx` and `App.tsx`, then trace role-based routes and API service calls.
 
 ---
 
 ## 7. Backend: The Server API
 
-* **Stack:** Node.js + Express
-* **Configs:** `.env.sample`, `package.json`, scripts
-* **Main file:** `index.js` (API entry point)
-* **Common scripts:** `test-jwt.js`, `create-test-logs.js`
-* **RESTful design:** All logic in `/api/` endpoints
+- **Stack:** Node.js with Express
+- **Configs:** `.env.example`, `package.json`, and environment-specific scripts
+- **Main Entry:** `server.ts` / `index.ts` (API bootstrap file)
+- **Core Responsibilities:**
 
-**Auth/Protected routes:** Look for JWT middleware in routes (often called `auth.js` or directly in route code)
+  - Authentication & role authorization
+  - Timetable and academic data handling
+  - Result processing and validation logic
 
-**Debug tip:** Use Postman or curl to hit endpoints locally—read error messages, check console output in server.
+- **RESTful API Design:**  
+  All backend logic is exposed through structured `/api/` endpoints.
+
+**Auth & Protected Routes:**  
+Role-based access is enforced using authentication middleware applied to secured routes.
+
+**Debug tip:**  
+Use Postman or curl to test APIs locally, monitor server logs for errors, and verify environment variables during development.
 
 ---
 
 ## 8. How to Run and Actually Debug This Project
 
-**A. Running Locally:**
+### A. Running Locally
 
-* Clone repo
-* Install deps in both `Client` and `Server`
-* Copy `.env.sample` in Server to `.env` (add secrets, DB string)
-* `cd Client && npm run dev` (usually [http://localhost:5173](http://localhost:5173))
-* `cd ../Server && npm run dev` (usually [http://localhost:5000](http://localhost:5000))
+- Clone the repository
+- Install dependencies in both `frontend` and `backend`
+- Copy `.env.example` in `backend` to `.env` and configure required values
+- Start the frontend:
+  - `cd frontend && npm run dev`
+  - Runs at [http://localhost:5173](http://localhost:5173)
+- Start the backend:
+  - `cd backend && npm run dev`
+  - Runs at [http://localhost:5000](http://localhost:5000)
 
-**B. Debugging:**
+### B. Debugging
 
-* Check browser dev tools (Network tab) for failed requests
-* Look at Server logs for errors (console output)
-* Use breakpoints in VSCode (Node debugging, Chrome for React)
-* Inspect `.env` for typos or missing values
+- Use browser developer tools (Network tab) to inspect API calls
+- Monitor backend console logs for runtime errors
+- Apply breakpoints in VS Code for frontend and backend code
+- Double-check `.env` files for missing or incorrect variables
 
-**C. Pro tip:** Change code, see instant effect thanks to Vite/hot reload.
+### C. Pro Tip
+
+Make changes and see instant results thanks to Vite’s hot reload, enabling fast iteration and efficient debugging.
 
 ---
 
@@ -172,14 +208,14 @@ flowchart TD
 
 ## 10. Best Practices, Gotchas, & Style Guide
 
-* **Use TypeScript where possible** (type-safety = fewer bugs)
-* **Commit messages:** Be concise but clear (`fix:`, `feat:`, `docs:`, etc.)
-* **Follow PR template:** The more info, the better
-* **.env safety:** Never commit secrets or real env files
-* **Lint/format:** Use ESLint + Prettier (check for configs in Client)
-* **Consistent naming:** Functions, files, and branches (see existing code)
-* **DRY:** Don’t Repeat Yourself—reuse components & utilities
-* **Read error messages fully:** 90% of issues are fixable with careful reading
+- **Use TypeScript where possible** (type-safety = fewer bugs)
+- **Commit messages:** Be concise but clear (`fix:`, `feat:`, `docs:`, etc.)
+- **Follow PR template:** The more info, the better
+- **.env safety:** Never commit secrets or real env files
+- **Lint/format:** Use ESLint + Prettier (check for configs in Client)
+- **Consistent naming:** Functions, files, and branches (see existing code)
+- **DRY:** Don’t Repeat Yourself—reuse components & utilities
+- **Read error messages fully:** 90% of issues are fixable with careful reading
 
 ---
 
@@ -187,43 +223,43 @@ flowchart TD
 
 **Beginner:**
 
-* Clone, install, and run both servers
-* Change a doc, style, or small UI bug
-* Open a doc PR (test the workflow)
+- Clone, install, and run both servers
+- Change a doc, style, or small UI bug
+- Open a doc PR (test the workflow)
 
 **Intermediate:**
 
-* Trace a user flow (login, dashboard)
-* Fix a frontend bug or small backend endpoint
-* Add/modify a small component or route
+- Trace a user flow (login, dashboard)
+- Fix a frontend bug or small backend endpoint
+- Add/modify a small component or route
 
 **Advanced:**
 
-* Refactor code for readability or performance
-* Add tests (unit/integration)
-* Propose or build a new feature
+- Refactor code for readability or performance
+- Add tests (unit/integration)
+- Propose or build a new feature
 
 ---
 
 ## 12. Contributor Quick Wins
 
-* **Update or improve docs** (spotted a typo or unclear step? Fix it!)
-* **Add comments to tricky code** (especially if you just learned something useful)
-* **Fix a UI issue or bug** in `Client/`
-* **Write a new test case** for a backend route
-* **Suggest/implement accessibility improvements** (ARIA, color contrast, tab order)
-* **Add or improve error handling** (user feedback or logging)
-* **Clean up linter/prettier warnings**
+- **Update or improve docs** (spotted a typo or unclear step? Fix it!)
+- **Add comments to tricky code** (especially if you just learned something useful)
+- **Fix a UI issue or bug** in `Client/`
+- **Write a new test case** for a backend route
+- **Suggest/implement accessibility improvements** (ARIA, color contrast, tab order)
+- **Add or improve error handling** (user feedback or logging)
+- **Clean up linter/prettier warnings**
 
 ---
 
 ## 13. How to Get Your PR Reviewed Fast
 
-* Reference the related issue in your PR title/body (e.g., “Fixes #123”)
-* Fill out the PR template fully (screenshots help if UI is involved)
-* Keep changes focused—avoid mega-PRs
-* Ask clear questions in your PR if you’re unsure about any approach
-* Be responsive to reviewer comments—iterate fast and communicate
+- Reference the related issue in your PR title/body (e.g., “Fixes #123”)
+- Fill out the PR template fully (screenshots help if UI is involved)
+- Keep changes focused—avoid mega-PRs
+- Ask clear questions in your PR if you’re unsure about any approach
+- Be responsive to reviewer comments—iterate fast and communicate
 
 ---
 
@@ -231,19 +267,19 @@ flowchart TD
 
 **I broke something!**
 
-* Roll back latest changes, restart both servers, check `.env` values
+- Roll back latest changes, restart both servers, check `.env` values
 
 **Dependencies not installing?**
 
-* Use Node 18+, clean npm cache, delete node\_modules & reinstall
+- Use Node 18+, clean npm cache, delete node_modules & reinstall
 
 **Can’t find where a bug is?**
 
-* Start at the UI, trace the request to the backend, check logs and error responses
+- Start at the UI, trace the request to the backend, check logs and error responses
 
 **How do I get help or feedback?**
 
-* Open an Issue, tag `@maintainers`, or ask in Discussions/Discord if available
+- Open an Issue, tag `@maintainers`, or ask in Discussions/Discord if available
 
 ---
 
@@ -251,31 +287,31 @@ flowchart TD
 
 **Modern Web Dev & Stack (Official):**
 
-* [React Docs](https://react.dev/)
-* [TypeScript Docs](https://www.typescriptlang.org/docs/)
-* [Node.js Docs](https://nodejs.org/en/docs/)
-* [Express Guide](https://expressjs.com/en/starter/installing.html)
-* [Vite Guide](https://vitejs.dev/guide/)
-* [Tailwind CSS Docs](https://tailwindcss.com/docs/installation)
-* [JWT.io Intro](https://jwt.io/introduction/)
+- [React Docs](https://react.dev/)
+- [TypeScript Docs](https://www.typescriptlang.org/docs/)
+- [Node.js Docs](https://nodejs.org/en/docs/)
+- [Express Guide](https://expressjs.com/en/starter/installing.html)
+- [Vite Guide](https://vitejs.dev/guide/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs/installation)
+- [JWT.io Intro](https://jwt.io/introduction/)
 
 **Contributing to Open Source:**
 
-* [GitHub’s Open Source Guides](https://opensource.guide/)
-* [How to Write a Good Commit Message](https://www.conventionalcommits.org/en/v1.0.0/)
-* [First Contributions: Step by Step](https://firstcontributions.github.io/)
+- [GitHub’s Open Source Guides](https://opensource.guide/)
+- [How to Write a Good Commit Message](https://www.conventionalcommits.org/en/v1.0.0/)
+- [First Contributions: Step by Step](https://firstcontributions.github.io/)
 
 **Debugging & Best Practices:**
 
-* [Chrome DevTools Docs](https://developer.chrome.com/docs/devtools/)
-* [Node.js Debugging in VSCode](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
-* [Effective Pull Requests](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/)
+- [Chrome DevTools Docs](https://developer.chrome.com/docs/devtools/)
+- [Node.js Debugging in VSCode](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
+- [Effective Pull Requests](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/)
 
 **Community & Help:**
 
-* [Stack Overflow: React](https://stackoverflow.com/questions/tagged/reactjs)
-* [Stack Overflow: Node.js](https://stackoverflow.com/questions/tagged/node.js)
-* [Dev.to Community](https://dev.to/)
+- [Stack Overflow: React](https://stackoverflow.com/questions/tagged/reactjs)
+- [Stack Overflow: Node.js](https://stackoverflow.com/questions/tagged/node.js)
+- [Dev.to Community](https://dev.to/)
 
 **Want More?**
 
@@ -285,11 +321,4 @@ flowchart TD
 
 ---
 
-
 ## 🎉 You Made It!
-
-This `LEARN.md` is your map, your cheat sheet, and your *invitation* to start contributing for real.
-
-* Read, experiment, break, fix, and PR!
-* Every contribution helps the project—and levels up your skills
-* Welcome to the Dev-Elevate community 🚀
