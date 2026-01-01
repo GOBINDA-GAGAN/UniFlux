@@ -1,140 +1,198 @@
-# 📦 INSTALL.md – Setup Guide for DevElevate
+# 📦 INSTALL.md – Setup Guide for UniFlux
 
-Welcome to **DevElevate – Your Smart Learning & Career Hub** 🚀
-This guide walks you through **cloning**, **installing dependencies**, and **running the project locally** using **Vite**, **React (TypeScript)**, **Tailwind CSS**, and **Node.js**.
-Please ensure you follow the proper **folder structure** to avoid bugs or broken references.
+Welcome to **UniFlux – AI-Powered Smart University Management & Timetable Optimization Platform** 🎓🚀  
+This guide explains how to **clone**, **configure**, and **run UniFlux locally** with a **modern frontend + backend architecture**, built under  
+🏆 **Elite Coders Winter of Code (ECWOC 2026)**.
+
+Please follow the steps carefully to avoid configuration issues.
 
 ---
 
 ## ✅ Prerequisites
 
-Before you begin, make sure you have the following installed:
+Ensure the following tools are installed on your system:
 
-| Tool          | Version | Download Link                                        |
-| ------------- | ------- | ---------------------------------------------------- |
-| Node.js       | ≥ 18.x  | [Download Node.js](https://nodejs.org/)              |
-| Git           | ≥ 2.x   | [Download Git](https://git-scm.com/)                 |
-| VS Code       | Latest  | [Download VS Code](https://code.visualstudio.com/)   |
-| MongoDB Atlas | –       | [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) |
+| Tool          | Recommended Version | Download                            |
+| ------------- | ------------------- | ----------------------------------- |
+| Node.js       | ≥ 18.x              | https://nodejs.org                  |
+| Git           | ≥ 2.x               | https://git-scm.com                 |
+| VS Code       | Latest              | https://code.visualstudio.com       |
+| MongoDB Atlas | Cloud DB            | https://www.mongodb.com/cloud/atlas |
 
 ---
 
 ## 🔁 Clone the Repository
 
 ```bash
-git clone https://github.com/abhisek2004/Dev-Elevate.git
-cd Dev-Elevate
+git clone https://github.com/<your-org-or-username>/UniFlux.git
+cd UniFlux
 ```
+
+````
 
 ---
 
 ## 📁 Project Structure Overview
 
-Here's the current recommended folder structure:
+UniFlux follows a **clear frontend–backend separation** for scalability and open-source contribution.
 
 ```
-DevElevate/
+UniFlux/
 │
-├── .github/               → GitHub metadata and workflows
-├── DevElevate/            → Primary app source folder
-│   ├── Admin/             → Admin dashboard and controls
-│   ├── Auth/              → Login, Register, Auth layout
-│   ├── Chatbot/           → AI chatbot integration (GPT-4)
-│   ├── Dashboard/         → User dashboard & home cards
-│   ├── Layout/            → Header, sidebar, routes
-│   ├── LearningHub/       → Courses, roadmaps, notes
-│   ├── Legal/             → Code of conduct, license, terms
-│   ├── PlacementPrep/     → HR prep, resources, jobs
-│   ├── Profile/           → Profile management, settings
-│   ├── ResumeBuilder/     → Resume, cover letter, GPT-based tips
-│   └── TechFeed/          → News, YouTube, Hackathons
+├── .github/                 → GitHub workflows & templates
 │
-├── src/                   → App entry point
-│   ├── components/        → Shared UI components
-│   ├── contexts/          → GlobalContext, AuthContext
-│   ├── App.tsx            → Main application shell
-│   ├── index.tsx          → Root renderer
-│   └── main.tsx           → Mounting and routing logic
+├── frontend/                → Frontend application (TypeScript + Tailwind)
+│   ├── src/
+│   │   ├── components/      → Reusable UI components
+│   │   ├── layouts/         → Navbar, Sidebar, Page layouts
+│   │   ├── pages/           → Role-based pages (Admin, Faculty, Dept)
+│   │   ├── routes/          → Protected & public routes
+│   │   ├── services/        → API service handlers
+│   │   ├── utils/           → Helpers & validators
+│   │   ├── App.tsx          → Root app component
+│   │   └── main.tsx         → App bootstrap
+│   ├── tailwind.config.js
+│   ├── vite.config.ts
+│   └── package.json
 │
-├── dist/                  → Production build output (after `npm run build`)
-├── .bolt/                 → Optional: bolt or runtime configs
-├── .gitignore             → Git ignored files
-├── vite.config.ts         → Vite build config
-├── tailwind.config.js     → Tailwind setup
-├── postcss.config.js      → PostCSS setup
-├── tsconfig.json          → TS global config
-├── tsconfig.app.json      → App-specific TS config
-├── package.json           → Project dependencies and scripts
-├── README.md              → Project overview
-├── LICENSE                → Project license
-├── CODE_OF_CONDUCT.md     → Code of conduct
-├── CONTRIBUTING.md        → How to contribute
-├── ROADMAP.md             → Feature roadmap
-├── SECURITY.md            → Security policy
-├── AUTHORS                → Project author info
+├── backend/                 → Backend services & APIs
+│   ├── src/
+│   │   ├── controllers/     → Request handlers
+│   │   ├── routes/          → API routes
+│   │   ├── models/          → Database schemas
+│   │   ├── services/        → Business logic
+│   │   ├── middleware/      → Auth, validation, error handling
+│   │   └── server.ts        → Backend entry point
+│   ├── package.json
+│   └── .env.example
+│
+├── docs/                    → Documentation (ROADMAP, FAQ, etc.)
+├── README.md                → Project overview
+├── CONTRIBUTING.md          → Contribution guidelines
+├── CODE_OF_CONDUCT.md       → Community standards
+├── ROADMAP.md               → ECWOC 2026 roadmap
+└── LICENSE
 ```
+
+---
+
+## 🌿 Environment Configuration
+
+### 📌 Frontend `.env`
+
+📁 `frontend/.env`
+
+```env
+VITE_APP_NAME=UniFlux
+VITE_API_BASE_URL=http://localhost:5000/api
+VITE_AUTH_TOKEN_KEY=uniflux_auth_token
+```
+
+---
+
+### 🔐 Backend `.env`
+
+📁 `backend/.env`
+
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/uniflux
+JWT_SECRET=your_secure_jwt_secret
+CORS_ALLOWED_ORIGINS=http://localhost:5173
+```
+
+⚠️ Never commit `.env` files. Use `.env.example` for reference.
 
 ---
 
 ## 📦 Install Dependencies
 
+### 🖥️ Frontend
+
 ```bash
+cd frontend
 npm install
 ```
 
-Make sure you are in the **root folder** where the `package.json` file exists.
+### ⚙️ Backend
+
+```bash
+cd ../backend
+npm install
+```
 
 ---
 
-## 🚀 Run the Project
+## 🚀 Run the Project Locally
 
-Use Vite's dev server to run the project locally:
+### ▶️ Start Backend Server
 
 ```bash
+cd backend
 npm run dev
 ```
 
-After the app starts, navigate to:
+Backend will run on:
 
 ```
-http://localhost:5173/
+http://localhost:5000
 ```
 
 ---
 
-## 🧪 Initial State & Testing
+### ▶️ Start Frontend App
 
-### ⚠️ **Note**:
+```bash
+cd ../frontend
+npm run dev
+```
 
-- As of the current base UI state, the **login** / **sign-up** page is for demonstration only.
-- There is **no real database connection yet**. Your data is stored in **browser cache/local memory**.
-- After registration (user/admin), you'll be able to see respective dashboard UIs.
-- Once the backend is integrated, we’ll connect this with **MongoDB Atlas** and **JWT-based auth**.
+Frontend will run on:
 
----
-
-## 🔐 MongoDB Atlas Setup (Planned)
-
-> A complete `.env` template and MongoDB cluster connection URL will be shared once the contribution opens.
+```
+http://localhost:5173
+```
 
 ---
 
-## 💡 Useful NPM Scripts
+## 🧪 Development Notes
+
+- 🔧 Some features may use **mock or temporary data** during early ECWOC phases
+- 🔐 Authentication & database integration will be expanded incrementally
+- 📅 Timetable optimization logic will evolve phase-by-phase
+- 📊 Dashboards will initially show sample analytics
+
+---
+
+## 🧠 Useful NPM Scripts
+
+### Frontend
 
 ```json
 "scripts": {
   "dev": "vite",
   "build": "vite build",
-  "preview": "vite preview",
-  "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  "preview": "vite preview"
+}
+```
+
+### Backend
+
+```json
+"scripts": {
+  "dev": "nodemon src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js"
 }
 ```
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing (Planned)
 
-Manual testing is being done during this stage. Automated testing framework (e.g., Vitest or Jest) will be integrated soon.
+- Manual testing during early development
+- Automated testing (unit + integration) planned in later ECWOC phases
 
 ---
 
@@ -142,7 +200,7 @@ Manual testing is being done during this stage. Automated testing framework (e.g
 
 Feel free to reach out:
 
-- 💬 [GitHub Discussions](https://github.com/abhisek2004/Dev-Elevate/discussions)
+- 💬 [GitHub Discussions](https://github.com/abhisek2004/Uniflux/discussions)
 - 📧 [officialdevelevate@gmail.com](mailto:officialdevelevate@gmail.com)
 - 🧑‍💻 Project Maintainer: Abhisek Panda
 
@@ -150,12 +208,14 @@ Feel free to reach out:
 
 ## ✅ Next Steps After Setup
 
-1. Explore the folder structure
-2. Make UI changes or add new sections under `DevElevate/`
-3. Raise issues or create PRs with improvements
-4. Join our Discord/community chat (coming soon)
+1. Explore the project structure
+2. Read `README.md` and `CONTRIBUTING.md`
+3. Pick an issue suitable to your skill level
+4. Create a branch and start contributing
+5. Submit a Pull Request 🚀
 
 ---
 
-Thank you for installing and setting up **DevElevate** locally! 💻
-Now let’s build the smartest education & career platform together. 🚀
+Thank you for setting up **UniFlux** locally 💙
+Let’s build **smarter, scalable, and open university systems together** 🎓⚡
+````
