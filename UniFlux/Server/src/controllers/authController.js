@@ -153,4 +153,37 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-export { authUser, registerUser, getUserProfile, updateUserProfile };
+// @desc    Super Admin login with fixed password
+// @route   POST /api/auth/superadmin-login
+// @access  Public
+const superAdminLogin = async (req, res) => {
+  try {
+    const { password } = req.body;
+    
+    // Check if the password matches the super admin password
+    // In a real application, this should be stored securely in environment variables
+    const SUPER_ADMIN_PASSWORD = process.env.SUPER_ADMIN_PASSWORD || 'admin123';
+    
+    if (password === SUPER_ADMIN_PASSWORD) {
+      // Create a mock super admin user object
+      const superAdminUser = {
+        _id: 'superadmin',
+        id: 'superadmin',
+        name: 'Super Admin',
+        email: 'superadmin@campuscore.in',
+        role: 'superadmin',
+        avatar: null,
+        token: generateToken('superadmin'),
+      };
+      
+      res.json(superAdminUser);
+    } else {
+      res.status(401);
+      throw new Error('Invalid super admin credentials');
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export { authUser, registerUser, getUserProfile, updateUserProfile, superAdminLogin };

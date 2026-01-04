@@ -8,20 +8,41 @@ const SuperAdminLogin: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: 'superadmin@campuscore.in',
-    password: '',
+    password: 'admin123',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const { setCurrentUser } = useApp(); // Get context at component level
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     try {
-      const success = await login(formData.email, formData.password);
-      if (success) {
+      // Simple fixed password check
+      if (formData.password === 'admin123') { // Fixed super admin password
+        // Create a mock super admin user
+        const superAdminUser = {
+          id: 'superadmin',
+          name: 'Super Admin',
+          email: 'superadmin@campuscore.in',
+          role: 'superadmin' as const,
+          avatar: undefined,
+          department: '',
+          rollNumber: '',
+          semester: 1,
+          registrationNo: '',
+          token: 'mock-token',
+        };
+        
+        // Set user in context
+        setCurrentUser(superAdminUser);
+        localStorage.setItem('campuscore_user', JSON.stringify(superAdminUser));
+        localStorage.setItem('campuscore_token', superAdminUser.token);
+        
         navigate('/dashboard');
       } else {
         setError('Invalid super admin credentials');

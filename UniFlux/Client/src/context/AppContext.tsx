@@ -5,9 +5,14 @@ import { User, Student, Teacher, Subject, AttendanceRecord, Marks, Grievance, No
 interface AppContextType {
   // Auth
   currentUser: User | null;
+  setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   register: (userData: { name: string; email: string; password: string; role: string; department: string; rollNumber?: string; registrationNo?: string; semester?: number }) => Promise<boolean>;
+  
+  // Socket
+  socket: Socket | null;
+  setSocket: React.Dispatch<React.SetStateAction<Socket | null>>;
   
   // Data
   students: Student[];
@@ -726,9 +731,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   return (
     <AppContext.Provider value={{
       currentUser,
+      setCurrentUser,
       login,
       logout,
       register,
+      socket,
+      setSocket,
       students,
       teachers,
       subjects,
