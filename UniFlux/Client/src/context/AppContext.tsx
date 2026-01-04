@@ -28,10 +28,13 @@ interface AppContextType {
   // Actions
   addStudent: (student: Omit<Student, 'id'>) => void;
   updateStudent: (id: string, student: Partial<Student>) => void;
+  deleteStudent: (id: string) => void;
   addTeacher: (teacher: Omit<Teacher, 'id'>) => void;
   updateTeacher: (id: string, teacher: Partial<Teacher>) => void;
+  deleteTeacher: (id: string) => void;
   addSubject: (subject: Omit<Subject, 'id'>) => void;
   updateSubject: (id: string, subject: Partial<Subject>) => void;
+  deleteSubject: (id: string) => void;
   markAttendance: (studentId: string, subjectId: string, date: string, status: 'present' | 'absent') => void;
   updateMarks: (studentId: string, subjectId: string, internal: number, external: number) => void;
   addGrievance: (grievance: Omit<Grievance, 'id' | 'createdAt'>) => void;
@@ -140,6 +143,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setStudents(prev => prev.map(s => s.id === id ? { ...s, ...updates } : s));
   };
 
+  const deleteStudent = (id: string) => {
+    setStudents(prev => prev.filter(s => s.id !== id));
+  };
+
   const addTeacher = (teacher: Omit<Teacher, 'id'>) => {
     const newTeacher = { ...teacher, id: Date.now().toString() };
     setTeachers(prev => [...prev, newTeacher]);
@@ -149,6 +156,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTeachers(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t));
   };
 
+  const deleteTeacher = (id: string) => {
+    setTeachers(prev => prev.filter(t => t.id !== id));
+  };
+
   const addSubject = (subject: Omit<Subject, 'id'>) => {
     const newSubject = { ...subject, id: Date.now().toString() };
     setSubjects(prev => [...prev, newSubject]);
@@ -156,6 +167,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const updateSubject = (id: string, updates: Partial<Subject>) => {
     setSubjects(prev => prev.map(s => s.id === id ? { ...s, ...updates } : s));
+  };
+
+  const deleteSubject = (id: string) => {
+    setSubjects(prev => prev.filter(s => s.id !== id));
   };
 
   const markAttendance = (studentId: string, subjectId: string, date: string, status: 'present' | 'absent') => {
@@ -262,10 +277,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       notices,
       addStudent,
       updateStudent,
+      deleteStudent,
       addTeacher,
       updateTeacher,
+      deleteTeacher,
       addSubject,
       updateSubject,
+      deleteSubject,
       markAttendance,
       updateMarks,
       addGrievance,
