@@ -39,12 +39,15 @@ interface AppContextType {
 
   // Actions
   addStudent: (student: Omit<Student, 'id'>) => Promise<void>;
+  deleteStudent: (id: string) => Promise<void>;
   updateStudent: (id: string, student: Partial<Student>) => Promise<void>;
   deleteStudent: (id: string) => Promise<void>;
   addTeacher: (teacher: Omit<Teacher, 'id'>) => Promise<void>;
+  deleteTeacher: (id: string) => Promise<void>;
   updateTeacher: (id: string, teacher: Partial<Teacher>) => Promise<void>;
   deleteTeacher: (id: string) => Promise<void>;
   addSubject: (subject: Omit<Subject, 'id'>) => Promise<void>;
+  deleteSubject: (id: string) => Promise<void>;
   updateSubject: (id: string, subject: Partial<Subject>) => Promise<void>;
   deleteSubject: (id: string) => Promise<void>;
   markAttendance: (studentId: string, subjectId: string, date: string, status: 'present' | 'absent') => Promise<void>;
