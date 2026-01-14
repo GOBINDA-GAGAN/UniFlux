@@ -60,18 +60,6 @@ courseSchema.virtual('subjects', {
   foreignField: 'course'
 });
 
-// Pre-validate hook to ensure totalSemesters matches duration
-courseSchema.pre('validate', function(next) {
-  if (this.duration && this.totalSemesters) {
-    // Typically 2 semesters per year
-    const expectedSemesters = this.duration * 2;
-    if (this.totalSemesters !== expectedSemesters) {
-      console.warn(`Total semesters (${this.totalSemesters}) doesn't match duration (${this.duration} years)`);
-    }
-  }
-  next();
-});
-
 // Instance method to get subjects by semester
 courseSchema.methods.getSubjectsBySemester = async function(semester) {
   const Subject = mongoose.model('Subject');
