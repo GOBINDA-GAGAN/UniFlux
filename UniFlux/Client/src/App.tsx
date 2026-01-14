@@ -28,6 +28,7 @@ import ReportsManagement from './components/Reports/ReportsManagement';
 import SettingsManagement from './components/Settings/SettingsManagement';
 import AcademicCalendarPage from './components/AcademicCalendar/AcademicCalendarPage';
 import UserFeedback from './components/Feedback/UserFeedback';
+import ScrollToTop from "./components/ScrollToTop"
 
 // Footer Pages
 import PrivacyPolicy from './components/Footer/PrivacyPolicy';
@@ -78,6 +79,7 @@ function App() {
         {/* Redirect from root to role selection */}
         <Route path="/" element={<RoleSelection />} />
       </Routes>
+      <ScrollToTop />
     </Router>
   );
 }
