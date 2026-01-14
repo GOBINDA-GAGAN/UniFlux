@@ -75,13 +75,13 @@ function App() {
         <Route path="/register/:role" element={<RegistrationForm />} />
         <Route path="/superadmin" element={<SuperAdminLogin />} />
         
-        {/* Main App Route - Only accessible when logged in */}
-        <Route path="/app/*" element={currentUser ? <MainApp /> : <RoleSelection />} />
+        {/* Main App Route - Accessible when logged in */}
+        <Route path="/*" element={currentUser ? <MainApp /> : <RoleSelection />} />
         
-        {/* Redirect from root to role selection */}
-        <Route path="/" element={<RoleSelection />} />
+        {/* Root path - redirect based on auth status */}
+        <Route path="/" element={currentUser ? <MainApp /> : <RoleSelection />} />
         
-        {/* 404 Page - Catch-all route for undefined paths */}
+        {/* 404 Page - This should be at the very end */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
@@ -107,7 +107,7 @@ const MainApp: React.FC = () => {
           case 'student':
             return <StudentDashboard />;
           default:
-            return <SuperAdminDashboard />;
+            return <RoleSelection />; // Redirect to role selection if no role
         }
       case 'students':
         return <StudentList />;
